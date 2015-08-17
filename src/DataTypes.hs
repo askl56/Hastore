@@ -18,3 +18,12 @@ clientName client = case client of
                       GovOrg  name                       -> name
                       Company name id person resp        -> name
                       Individual (Person fName lName _) _ -> fName ++ " " ++ lName
+
+responsibility :: Client -> String
+responsibility (Company _ _ _ r) = r
+responsibility _                 = "Unknown"
+
+specialClient :: Client -> Bool
+specialClient (clientName -> "Mr. Alejandro") = True
+specialClient (responsibility -> "Director")  = True
+specialClient _
