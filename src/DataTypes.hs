@@ -1,3 +1,5 @@
+{-# LANGUAGE ViewPatterns, NamedFieldPuns, RecordWildCards #-}
+
 module DataTypes where
 
 import Data.Char
@@ -27,3 +29,19 @@ specialClient :: Client -> Bool
 specialClient (clientName -> "Mr. Alejandro") = True
 specialClient (responsibility -> "Director")  = True
 specialClient _
+
+companyName :: Client -> Maybe String
+companyName client = case client of
+                       Company name _ _ _ -> Just name
+                       _                  -> Nothing
+
+fibonacci :: Integer -> Integer
+-- LONG VERSION
+-- fibonacci n = case n of
+--                 0 -> 0
+--                 1 -> 1
+--                 _ -> fibonacci (n-1) + fibonacci (n-2)
+-- SHORT VERSION
+fibonacci 0 = 0
+fibonacci 1 = 1
+fibonacci n = fibonacci (n-1) + fibonacci (n-2)
